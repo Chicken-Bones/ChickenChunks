@@ -80,9 +80,13 @@ processResources {
 }
 
 version = "${project.minecraft.version}-${project.version}"
+def commonManifest = {
+    attributes 'AccessTransformer': 'chickenchunks_at.cfg'
+}
 
 jar {
     classifier = 'universal'
+    manifest commonManifest
 }
 
 task sourceJar(type: Jar) {
@@ -94,6 +98,7 @@ task sourceJar(type: Jar) {
 task devJar(type: Jar) {
     from sourceSets.main.output
     classifier = 'dev'
+    manifest commonManifest
 }
 
 // Tell the artifact system about our extra jars
