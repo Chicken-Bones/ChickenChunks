@@ -1,5 +1,6 @@
 package codechicken.chunkloader;
 
+import codechicken.core.GuiModListScroll;
 import net.minecraft.client.Minecraft;
 import codechicken.core.CCUpdateChecker;
 import codechicken.lib.packet.PacketCustom;
@@ -17,6 +18,8 @@ public class ChunkLoaderClientProxy  extends ChunkLoaderProxy
             CCUpdateChecker.updateCheck("ChickenChunks");
         
         super.init();
+
+        GuiModListScroll.register("ChickenChunks");
         
         PacketCustom.assignHandler(ChunkLoaderCPH.channel, new ChunkLoaderCPH());
         
