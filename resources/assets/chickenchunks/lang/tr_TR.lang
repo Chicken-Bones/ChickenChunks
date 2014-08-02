@@ -1,0 +1,14 @@
+tile.chickenChunkLoader|0.name=Chunk Yükleyici
+tile.chickenChunkLoader|1.name=Nokta Yükleyici
+
+chickenchunks.gui.name=Chunk Yükleyici
+chickenchunks.gui.showlasers=Lazerleri Aç
+chickenchunks.gui.hidelasers=Lazerleri Kapat
+chickenchunks.gui.chunk=%d Chunk
+chickenchunks.gui.chunks=%d Chunk
+chickenchunks.gui.radius=Etki Alanı
+
+chickenchunks.shape.square=Kare
+chickenchunks.shape.circle=Daire
+chickenchunks.shape.linex=X Hattı
+chickenchunks.shape.linez=Z Hattı

@@ -1,0 +1,14 @@
+tile.chickenChunkLoader|0.name=Загрузчик чанков
+tile.chickenChunkLoader|1.name=Загрузчик чанка
+
+chickenchunks.gui.name=Загрузчик чанков
+chickenchunks.gui.showlasers=Показать лазеры
+chickenchunks.gui.hidelasers=Скрыть Лазеры
+chickenchunks.gui.chunk=%d чанк
+chickenchunks.gui.chunks=%d чанки
+chickenchunks.gui.radius=Радиус
+
+chickenchunks.shape.square=Квадрат
+chickenchunks.shape.circle=Круг
+chickenchunks.shape.linex=Line X
+chickenchunks.shape.linez=Line Z

@@ -1,0 +1,14 @@
+﻿tile.chickenChunkLoader|0.name=Chunkloader
+tile.chickenChunkLoader|1.name=Spotloader
+
+chickenchunks.gui.name=Chunkloader
+chickenchunks.gui.showlasers=Zeige Laser
+chickenchunks.gui.hidelasers=Verstecke Laser
+chickenchunks.gui.chunk=%d Chunk
+chickenchunks.gui.chunks=%d Chunks
+chickenchunks.gui.radius=Radius
+
+chickenchunks.shape.square=Quadrat
+chickenchunks.shape.circle=Kreis
+chickenchunks.shape.linex=Gerade X
+chickenchunks.shape.linez=Gerade Z
