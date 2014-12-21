@@ -1,12 +1,6 @@
 package codechicken.chunkloader;
 
-import java.io.DataInputStream;
-import java.io.DataOutput;
-import java.io.DataOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -46,6 +40,7 @@ import net.minecraftforge.common.ForgeChunkManager.OrderedLoadingCallback;
 import net.minecraftforge.common.ForgeChunkManager.PlayerOrderedLoadingCallback;
 import net.minecraftforge.common.ForgeChunkManager.Ticket;
 import net.minecraftforge.common.ForgeChunkManager.Type;
+import org.apache.logging.log4j.LogManager;
 
 public class ChunkLoaderManager
 {
@@ -508,10 +503,15 @@ public class ChunkLoaderManager
             return;
 
         DataInputStream datain = new DataInputStream(new FileInputStream(saveFile));
-        int entries = datain.readInt();
-        for (int i = 0; i < entries; i++)
-            loginTimes.put(datain.readUTF(), datain.readLong());
+        try {
+            int entries = datain.readInt();
+            for (int i = 0; i < entries; i++)
+                loginTimes.put(datain.readUTF(), datain.readLong());
+        } catch (IOException e) {
+            LogManager.getLogger("ChickenChunks").error("Error reading loginTimes.dat", e);
+        }
         datain.close();
+
     }
 
     private static void loadModChunks() throws IOException {
@@ -553,10 +553,8 @@ public class ChunkLoaderManager
             return true;
 
         Long lastLogin = loginTimes.get(username);
-        if (lastLogin == null)
-            return false;
+        return lastLogin != null && (System.currentTimeMillis() - lastLogin) / 60000L < awayTimeout;
 
-        return (System.currentTimeMillis() - lastLogin) / 60000L < awayTimeout;
     }
 
     public static int getPlayerChunkLimit(String username) {
