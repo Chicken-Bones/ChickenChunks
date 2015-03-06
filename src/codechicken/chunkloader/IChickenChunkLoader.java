@@ -14,5 +14,6 @@ public abstract interface IChickenChunkLoader
     public World getWorld();
     public BlockCoord getPosition();
     public void deactivate();
+    public void activate();
     public Collection<ChunkCoordIntPair> getChunks();
 }
