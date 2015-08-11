@@ -634,6 +634,11 @@ public class ChunkLoaderManager
     }
 
     private static ChunkLoaderOrganiser getOrganiser(IChickenChunkLoader loader) {
+    	// Added bugfix here because IChickenChunkLoad.getWorld() is needed to get the WorldServer object for load(),
+    	// and this method has the last reference to the loader
+    	if(!loaded)
+    		ChunkLoaderManager.load(DimensionManager.getWorld(CommonUtils.getDimension(loader.getWorld())));
+        
         String owner = loader.getOwner();
         return owner == null ? getModOrganiser(loader.getMod()) : getPlayerOrganiser(owner);
     }
@@ -656,7 +661,10 @@ public class ChunkLoaderManager
     }
 
     private static PlayerOrganiser getPlayerOrganiser(String username) {
-        PlayerOrganiser organiser = playerOrganisers.get(username);
+        // NPE was here. The newly added activate() method in TileChunkLoaderBase will get here before the chunk manager is loaded
+    	// if another mod that loads chunks calls it first (Extra Utilities in my case).
+    	// If that happens the playerOrganisers HashMap won't be initialized yet.
+    	PlayerOrganiser organiser = playerOrganisers.get(username);
         if (organiser == null)
             playerOrganisers.put(username, organiser = new PlayerOrganiser(username));
         return organiser;
