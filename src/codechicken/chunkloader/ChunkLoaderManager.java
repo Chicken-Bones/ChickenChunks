@@ -656,6 +656,8 @@ public class ChunkLoaderManager
     }
 
     private static PlayerOrganiser getPlayerOrganiser(String username) {
+        if (playerOrganisers == null)
+            return null;
         PlayerOrganiser organiser = playerOrganisers.get(username);
         if (organiser == null)
             playerOrganisers.put(username, organiser = new PlayerOrganiser(username));
